@@ -1,16 +1,16 @@
-# REST API - Filter Fields #
-**Contributors:** svrooij  
-**Donate link:** http://svrooij.nl/buy-me-a-beer  
-**Tags:** json, rest, api, rest-api  
-**Requires at least:** 4.3-alpha  
-**Tested up to:** 4.3.1  
-**Stable tag:** trunk  
-**License:** MIT  
-**License URI:** https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE  
+=== REST API - Filter Fields ===
+Contributors: svrooij
+Donate link: http://svrooij.nl/buy-me-a-beer
+Tags: json, rest, api, rest-api
+Requires at least: 4.3-alpha
+Tested up to: 4.3.1
+Stable tag: trunk
+License: MIT
+License URI: https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE
 
 Filter the properties returned by the wordpress rest api V2
 
-## Description ##
+== Description ==
 
 The [wp-rest-api-v2](https://wordpress.org/plugins/rest-api/) returns a lot of properties.
 It could be very useful (or mobile-data-friendly) to only return the properties needed by the application.
@@ -60,11 +60,11 @@ It can return (with ``fields=id,title,link`` as GET parameter)
       }
     }
 
-### Notes ###
+= Notes =
 
 1. If you specify fields so it wouldn't return data the default response is send back to the client.
 2. (for developers) something wrong with this plugin? [Github](https://github.com/svrooij/rest-api-filter-fields/)
-## Installation ##
+== Installation ==
 
 Installing this plugin is really easy.
 
@@ -74,14 +74,14 @@ Installing this plugin is really easy.
 You can also download it through the build-in plugin manager.
 Then it will be installed in `/wp-content/plugins/rest-api-filter-fields/`.
 
-## Frequently Asked Questions ##
+== Frequently Asked Questions ==
 
-### Does this also work for my custom posttype? ###
+= Does this also work for my custom posttype? =
 
 Yes, we picked 100 as priority (default = 10) for activating.
 This mean this plugin is probably activated last, so all custom post types should already be loaded.
 
-### I found a bug, what should I do? ###
+= I found a bug, what should I do? =
 
 All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields](https://github.com/svrooij/rest-api-filter-fields/issues)
 so please create an issue (or a pull request with a fix there)

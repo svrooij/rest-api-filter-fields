@@ -1,0 +1,23 @@
+{
+  "name": "wordpress-rest-api-filter-fields",
+  "version": "0.0.1",
+  "description": "Filter the properties returned by the wp rest api V2",
+  "main" : "Gruntfile.js",
+  "scripts" : {
+    "test": "echo 'working'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svrooij/rest-api-filter-fields.git"
+  },
+  "author": {
+    "name": "Stephan van Rooij",
+    "email": "wordpress@svrooij.nl",
+    "url":"http://svrooij.nl"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-wp-readme-to-markdown": "^1.0.0"
+  }
+}
