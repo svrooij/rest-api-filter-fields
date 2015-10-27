@@ -64,6 +64,8 @@ It can return (with ``fields=id,title,link`` as GET parameter)
 
 1. If you specify fields so it wouldn't return data the default response is send back to the client.
 2. (for developers) something wrong with this plugin? [Github](https://github.com/svrooij/rest-api-filter-fields/)
+
+
 == Installation ==
 
 Installing this plugin is really easy.
