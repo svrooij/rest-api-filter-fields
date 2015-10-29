@@ -4,7 +4,7 @@ Donate link: http://svrooij.nl/buy-me-a-beer
 Tags: json, rest, api, rest-api
 Requires at least: 4.3-alpha
 Tested up to: 4.3.1
-Stable tag: trunk
+Stable tag: 1.0.0
 License: MIT
 License URI: https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE
 
@@ -87,3 +87,8 @@ This mean this plugin is probably activated last, so all custom post types shoul
 
 All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields](https://github.com/svrooij/rest-api-filter-fields/issues)
 so please create an issue (or a pull request with a fix there)
+
+== Changelog ==
+
+= 1.0.0 =
+* First release of rest-api-filter-fields
