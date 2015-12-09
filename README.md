@@ -1,10 +1,10 @@
 # REST API - Filter Fields #
 **Contributors:** svrooij  
-**Donate link:** http://svrooij.nl/buy-me-a-beer  
+**Donate link:** https://svrooij.nl/buy-me-a-beer  
 **Tags:** json, rest, api, rest-api  
-**Requires at least:** 4.3-alpha  
-**Tested up to:** 4.3.1  
-**Stable tag:** 1.0.0  
+**Requires at least:** 4.3  
+**Tested up to:** 4.4  
+**Stable tag:** 1.0.1  
 **License:** MIT  
 **License URI:** https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE  
 
@@ -80,7 +80,7 @@ Then it will be installed in `/wp-content/plugins/rest-api-filter-fields/`.
 
 ### Does this also work for my custom posttype? ###
 
-Yes, we picked 100 as priority (default = 10) for activating.
+Yes, we picked 20 as priority (default = 10) for activating.
 This mean this plugin is probably activated last, so all custom post types should already be loaded.
 
 ### I found a bug, what should I do? ###
@@ -89,6 +89,10 @@ All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields
 so please create an issue (or a pull request with a fix there)
 
 ## Changelog ##
+
+### 1.0.1 ###
+* Bumped tested wordpress version to 4.4
+* Metadata update (personal website is https only :D)
 
 ### 1.0.0 ###
 * First release of rest-api-filter-fields
