@@ -3,8 +3,8 @@
 **Donate link:** https://svrooij.nl/buy-me-a-beer  
 **Tags:** json, rest, api, rest-api  
 **Requires at least:** 4.3  
-**Tested up to:** 4.4  
-**Stable tag:** 1.0.1  
+**Tested up to:** 4.6.1  
+**Stable tag:** 1.0.2  
 **License:** MIT  
 **License URI:** https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE  
 
@@ -78,10 +78,16 @@ Then it will be installed in `/wp-content/plugins/rest-api-filter-fields/`.
 
 ## Frequently Asked Questions ##
 
+### Do you add data to the response? ###
+
+No, this plugin only removes entries.
+When you want to add [featured_images](https://github.com/svrooij/rest-api-filter-fields/issues/5), I recommend using [better-rest-api-featured-images](https://wordpress.org/plugins/better-rest-api-featured-images/)
+
 ### Does this also work for my custom posttype? ###
 
 Yes, we picked 20 as priority (default = 10) for activating.
 This mean this plugin is probably activated last, so all custom post types should already be loaded.
+But this only works if you made it public for the api.
 
 ### I found a bug, what should I do? ###
 
@@ -89,6 +95,10 @@ All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields
 so please create an issue (or a pull request with a fix there)
 
 ## Changelog ##
+
+### 1.0.2 ###
+* Added filtering for categories [Issue #4](https://github.com/svrooij/rest-api-filter-fields/issues/4)
+* Tested on Wordpress version 4.6.1
 
 ### 1.0.1 ###
 * Bumped tested wordpress version to 4.4

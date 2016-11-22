@@ -10,7 +10,7 @@
  * Plugin Name:         WP REST API - filter fields
  * Plugin URI:          https://github.com/svrooij/rest-api-filter-fields
  * Description:         Enables you to filter the fields returned by the api.
- * Version:             1.0.1
+ * Version:             1.0.2
  * Author:              Stephan van Rooij
  * Author URI:          https://svrooij.nl
  * License:             MIT
@@ -44,10 +44,11 @@ function rest_api_filter_fields_init(){
 
   }
 
-  // Also enable filtering 'comments', 'taxonomies' and 'terms'
+  // Also enable filtering 'categories', 'comments', 'taxonomies' and 'terms'
   add_filter('rest_prepare_comment','rest_api_filter_fields_magic',20,3);
   add_filter('rest_prepare_taxonomy','rest_api_filter_fields_magic',20,3);
   add_filter('rest_prepare_term','rest_api_filter_fields_magic',20,3);
+  add_filter('rest_prepare_category','rest_api_filter_fields_magic',20,3);
 }
 
 
