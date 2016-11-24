@@ -4,11 +4,11 @@ Donate link: https://svrooij.nl/buy-me-a-beer
 Tags: json, rest, api, rest-api
 Requires at least: 4.3
 Tested up to: 4.6.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: MIT
 License URI: https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE
 
-Filter the properties returned by the wordpress rest api V2
+Filter the properties returned by the Wordpress rest api V2
 
 == Description ==
 
@@ -17,7 +17,7 @@ It could be very useful (or mobile-data-friendly) to only return the properties 
 
 If you only want titles and links of some articles it doesn't make sense to return the content or the excerpt.
 
-This isn't limited to posts, it also works on custom posttypes, pages, terms, taxonomies and comments.
+This isn't limited to posts, it also works on custom posttypes, categories, pages, terms, taxonomies and comments.
 
 Instead of returning:
 
@@ -50,7 +50,7 @@ Instead of returning:
       //.. even more tags ....
     }
 
-It can return (with ``fields=id,title,link`` as GET parameter)
+It can return (with ``fields=id,title.rendered,link`` as GET parameter)
 
     {
       "id": 2138,
@@ -64,7 +64,7 @@ It can return (with ``fields=id,title,link`` as GET parameter)
 
 1. If you specify fields so it wouldn't return data the default response is send back to the client.
 2. (for developers) something wrong with this plugin? [Github](https://github.com/svrooij/rest-api-filter-fields/)
-
+3. If you like the plugin (buy me a beer)[https://svrooij.nl/buy-me-a-beer/]
 
 == Installation ==
 
@@ -83,6 +83,10 @@ Then it will be installed in `/wp-content/plugins/rest-api-filter-fields/`.
 No, this plugin only removes entries.
 When you want to add [featured_images](https://github.com/svrooij/rest-api-filter-fields/issues/5), I recommend using [better-rest-api-featured-images](https://wordpress.org/plugins/better-rest-api-featured-images/)
 
+= How about nested propterties? =
+
+You can filter on nested properties with a '.' like 'title.rendered'. Not sure if this also works on arrays. (Existing issues)[https://github.com/svrooij/rest-api-filter-fields/issues] or (Submit issue)[https://github.com/svrooij/rest-api-filter-fields/issues/new]
+
 = Does this also work for my custom posttype? =
 
 Yes, we picked 20 as priority (default = 10) for activating.
@@ -95,6 +99,9 @@ All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields
 so please create an issue (or a pull request with a fix there)
 
 == Changelog ==
+
+= 1.0.3 =
+* Filter on nested fields [Issue #1](https://github.com/svrooij/rest-api-filter-fields/issues/1) implemented. Please test and leave a response [here](https://github.com/svrooij/rest-api-filter-fields/issues/1).
 
 = 1.0.2 =
 * Added filtering for categories [Issue #4](https://github.com/svrooij/rest-api-filter-fields/issues/4)

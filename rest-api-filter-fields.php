@@ -10,7 +10,7 @@
  * Plugin Name:         WP REST API - filter fields
  * Plugin URI:          https://github.com/svrooij/rest-api-filter-fields
  * Description:         Enables you to filter the fields returned by the api.
- * Version:             1.0.2
+ * Version:             1.0.3
  * Author:              Stephan van Rooij
  * Author URI:          https://svrooij.nl
  * License:             MIT
@@ -67,20 +67,35 @@ function rest_api_filter_fields_magic( $data, $post, $request ){
     // Create a new array
     $filtered_data = array();
 
+    // The original data is in $data object in the property data
+    $data = $data->data;
+
     // Explode the $fields parameter to an array.
-    $filter = explode(',',$fields);
+    $filters = explode(',',$fields);
 
     // If the filter is empty return the original.
-    if(empty($filter) || count($filter) == 0)
+    if(empty($filters) || count($filters) == 0)
       return $data;
 
+    $singleFilters = array_filter($filters,'singleValueFilterArray');
+    //$filtered_data['singleFilters'] = $singleFilters;
 
-    // The original data is in $data object in the property data
+
     // Foreach property inside the data, check if the key is in the filter.
-    foreach ($data->data as $key => $value) {
-      // If the key is in the $filter array, add it to the $filtered_data
-      if (in_array($key, $filter)) {
+    foreach ($data as $key => $value) {
+      // If the key is in the $filters array, add it to the $filtered_data
+      if (in_array($key, $singleFilters)) {
         $filtered_data[$key] = $value;
+      }
+    }
+
+    $childFilters = array_filter($filters,'childValueFilterArray');
+    //$filtered_data['childFilters'] = $childFilters;
+
+    foreach ($childFilters as $childFilter) {
+      $val = array_path_value($data,$childFilter);
+      if($val != null){
+        set_array_path_value($filtered_data,$childFilter,$val);
       }
     }
 
@@ -89,6 +104,95 @@ function rest_api_filter_fields_magic( $data, $post, $request ){
   // return the filtered_data if it is set and got fields.
   return (isset($filtered_data) && count($filtered_data) > 0) ? $filtered_data : $data;
 
+}
+
+// Function to filter the fields array
+function singleValueFilterArray($var){
+  return (strpos($var,'.') ===false);
+}
+
+// Function to filter the fields array
+function childValueFilterArray($var){
+  return (strpos($var,'.') !=false);
+}
+
+// found on http://codeaid.net/php/get-values-of-multi-dimensional-arrays-using-xpath-notation
+function array_path_value(array $array, $path, $default = null)
+{
+    // specify the delimiter
+    $delimiter = '.';
+
+    // fail if the path is empty
+    if (empty($path)) {
+        throw new Exception('Path cannot be empty');
+    }
+
+    // remove all leading and trailing slashes
+    $path = trim($path, $delimiter);
+
+    // use current array as the initial value
+    $value = $array;
+
+    // extract parts of the path
+    $parts = explode($delimiter, $path);
+
+    // loop through each part and extract its value
+    foreach ($parts as $part) {
+        if (isset($value[$part])) {
+            // replace current value with the child
+            $value = $value[$part];
+        } else {
+            // key doesn't exist, fail
+            return $default;
+        }
+    }
+
+    return $value;
+}
+
+// Function found on http://codeaid.net/php/set-value-of-an-array-using-xpath-notation
+function set_array_path_value(array &$array, $path, $value)
+{
+    // fail if the path is empty
+    if (empty($path)) {
+        throw new Exception('Path cannot be empty');
+    }
+
+    // fail if path is not a string
+    if (!is_string($path)) {
+        throw new Exception('Path must be a string');
+    }
+
+    // specify the delimiter
+    $delimiter = '.';
+
+    // remove all leading and trailing slashes
+    $path = trim($path, $delimiter);
+
+    // split the path in into separate parts
+    $parts = explode($delimiter, $path);
+
+    // initially point to the root of the array
+    $pointer =& $array;
+
+    // loop through each part and ensure that the cell is there
+    foreach ($parts as $part) {
+        // fail if the part is empty
+        if (empty($part)) {
+            throw new Exception('Invalid path specified: ' . $path);
+        }
+
+        // create the cell if it doesn't exist
+        if (!isset($pointer[$part])) {
+            $pointer[$part] = array();
+        }
+
+        // redirect the pointer to the new cell
+        $pointer =& $pointer[$part];
+    }
+
+    // set value of the target cell
+    $pointer = $value;
 }
 
  ?>
