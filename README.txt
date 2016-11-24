@@ -64,7 +64,7 @@ It can return (with ``fields=id,title.rendered,link`` as GET parameter)
 
 1. If you specify fields so it wouldn't return data the default response is send back to the client.
 2. (for developers) something wrong with this plugin? [Github](https://github.com/svrooij/rest-api-filter-fields/)
-3. If you like the plugin (buy me a beer)[https://svrooij.nl/buy-me-a-beer/]
+3. If you like the plugin [buy me a beer](https://svrooij.nl/buy-me-a-beer/)
 
 == Installation ==
 
@@ -85,7 +85,7 @@ When you want to add [featured_images](https://github.com/svrooij/rest-api-filte
 
 = How about nested propterties? =
 
-You can filter on nested properties with a '.' like 'title.rendered'. Not sure if this also works on arrays. (Existing issues)[https://github.com/svrooij/rest-api-filter-fields/issues] or (Submit issue)[https://github.com/svrooij/rest-api-filter-fields/issues/new]
+You can filter on nested properties with a '.' like 'title.rendered'. Not sure if this also works on arrays. [Existing issues](https://github.com/svrooij/rest-api-filter-fields/issues) or [Submit issue](https://github.com/svrooij/rest-api-filter-fields/issues/new)
 
 = Does this also work for my custom posttype? =
 
