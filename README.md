@@ -3,7 +3,7 @@
 **Donate link:** https://svrooij.nl/buy-me-a-beer  
 **Tags:** json, rest, api, rest-api  
 **Requires at least:** 4.3  
-**Tested up to:** 4.6.1  
+**Tested up to:** 4.7  
 **Stable tag:** 1.0.3  
 **License:** MIT  
 **License URI:** https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE  
