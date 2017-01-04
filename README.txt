@@ -4,7 +4,7 @@ Donate link: https://svrooij.nl/buy-me-a-beer
 Tags: json, rest, api, rest-api
 Requires at least: 4.3
 Tested up to: 4.7
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: MIT
 License URI: https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE
 
@@ -99,6 +99,9 @@ All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields
 so please create an issue (or a pull request with a fix there)
 
 == Changelog ==
+
+= 1.0.4 =
+* Updated readme.
 
 = 1.0.3 =
 * Filter on nested fields [Issue #1](https://github.com/svrooij/rest-api-filter-fields/issues/1) implemented. Please test and leave a response [here](https://github.com/svrooij/rest-api-filter-fields/issues/1).

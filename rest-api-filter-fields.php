@@ -10,7 +10,7 @@
  * Plugin Name:         WP REST API - filter fields
  * Plugin URI:          https://github.com/svrooij/rest-api-filter-fields
  * Description:         Enables you to filter the fields returned by the api.
- * Version:             1.0.3
+ * Version:             1.0.4
  * Author:              Stephan van Rooij
  * Author URI:          https://svrooij.nl
  * License:             MIT
