@@ -10,7 +10,7 @@
  * Plugin Name:         WP REST API - filter fields
  * Plugin URI:          https://github.com/svrooij/rest-api-filter-fields
  * Description:         Enables you to filter the fields returned by the api.
- * Version:             1.0.4
+ * Version:             1.0.5
  * Author:              Stephan van Rooij
  * Author URI:          https://svrooij.nl
  * License:             MIT
@@ -54,10 +54,12 @@ function rest_api_filter_fields_init(){
 
 /**
  * This is where the magic happends.
- *
+ * @param WP_REST_Response   $response   The response object.
+ * @param WP_Post            $post       Post object.
+ * @param WP_REST_Request    $request    Request object.
  * @return object (Either the original or the object with the fields filtered)
  */
-function rest_api_filter_fields_magic( $data, $post, $request ){
+function rest_api_filter_fields_magic( $response, $post, $request ){
   // Get the parameter from the WP_REST_Request
   // This supports headers, GET/POST variables.
   // and returns 'null' when not exists
@@ -67,19 +69,29 @@ function rest_api_filter_fields_magic( $data, $post, $request ){
     // Create a new array
     $filtered_data = array();
 
-    // The original data is in $data object in the property data
-    $data = $data->data;
+    // The original data is in $response object in the property data
+    $data = $response->data;
+
+    // If _embed is included in the GET also fetch the _embedded values.
+    if(isset( $_GET['_embed'] )){
+      // Found in: https://core.trac.wordpress.org/browser/trunk/src/wp-includes/rest-api/endpoints/class-wp-rest-controller.php#L217
+      $rest_server = rest_get_server();
+      // Code from https://core.trac.wordpress.org/browser/trunk/src/wp-includes/rest-api/class-wp-rest-server.php#L382
+      // $result = $this->response_to_data( $result, isset( $_GET['_embed'] ) );
+      $data = $rest_server->response_to_data($response,true);
+    } else {
+      // The links should be included in the first place, so they can be filtered if needed.
+      $data['_links'] = $response->get_links();
+    }
 
     // Explode the $fields parameter to an array.
     $filters = explode(',',$fields);
 
     // If the filter is empty return the original.
     if(empty($filters) || count($filters) == 0)
-      return $data;
+      return $response;
 
     $singleFilters = array_filter($filters,'singleValueFilterArray');
-    //$filtered_data['singleFilters'] = $singleFilters;
-
 
     // Foreach property inside the data, check if the key is in the filter.
     foreach ($data as $key => $value) {
@@ -90,7 +102,6 @@ function rest_api_filter_fields_magic( $data, $post, $request ){
     }
 
     $childFilters = array_filter($filters,'childValueFilterArray');
-    //$filtered_data['childFilters'] = $childFilters;
 
     foreach ($childFilters as $childFilter) {
       $val = array_path_value($data,$childFilter);
@@ -102,8 +113,15 @@ function rest_api_filter_fields_magic( $data, $post, $request ){
   }
 
   // return the filtered_data if it is set and got fields.
-  return (isset($filtered_data) && count($filtered_data) > 0) ? $filtered_data : $data;
+  // return (isset($filtered_data) && count($filtered_data) > 0) ? rest_ensure_response($filtered_data) : $response;
+  if (isset($filtered_data) && count($filtered_data) > 0) {
+    //$filtered_data['_links'] = $response->get_links();
+    $newResp = rest_ensure_response($filtered_data);
+    return $newResp;
+  }
 
+  // return the response that we got in the first place.
+  return $response;
 }
 
 // Function to filter the fields array
@@ -194,5 +212,3 @@ function set_array_path_value(array &$array, $path, $value)
     // set value of the target cell
     $pointer = $value;
 }
-
- ?>

@@ -2,9 +2,9 @@
 **Contributors:** svrooij  
 **Donate link:** https://svrooij.nl/buy-me-a-beer  
 **Tags:** json, rest, api, rest-api  
-**Requires at least:** 4.3  
+**Requires at least:** 4.4  
 **Tested up to:** 4.7  
-**Stable tag:** 1.0.4  
+**Stable tag:** 1.0.5  
 **License:** MIT  
 **License URI:** https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE  
 
@@ -99,6 +99,9 @@ All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields
 so please create an issue (or a pull request with a fix there)
 
 ## Changelog ##
+
+### 1.0.5 ###
+* Support for embedded fields (when you include the '_embed' GET parameter!)
 
 ### 1.0.4 ###
 * Updated readme.
