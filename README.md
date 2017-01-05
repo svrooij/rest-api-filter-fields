@@ -70,11 +70,8 @@ It can return (with ``fields=id,title.rendered,link`` as GET parameter)
 
 Installing this plugin is really easy.
 
-1. Upload `rest-api-filter-fields.php` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-
-You can also download it through the build-in plugin manager.
-Then it will be installed in `/wp-content/plugins/rest-api-filter-fields/`.
+Just search the plugin directory for `rest api filter fields` and press install.
+Or download it right from [Github](https://github.com/svrooij/rest-api-filter-fields/releases) and copy the `rest-api-filter-fields` directory in the archive to `wp-content/plugins/`.
 
 ## Frequently Asked Questions ##
 
@@ -102,6 +99,7 @@ so please create an issue (or a pull request with a fix there)
 
 ### 1.0.5 ###
 * Support for embedded fields (when you include the '_embed' GET parameter!)
+* Moved all the logic to a separate class, so it won't intervene the Wordpress core.
 
 ### 1.0.4 ###
 * Updated readme.

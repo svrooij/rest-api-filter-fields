@@ -1,28 +1,17 @@
 <?php
-/**
- * WP REST API - filter fields
- *
- * @package             REST_Api_Filter_Fields
- * @author              Stephan van Rooij <github@svrooij.nl>
- * @license             MIT
- *
- * @wordpress-plugin
- * Plugin Name:         WP REST API - filter fields
- * Plugin URI:          https://github.com/svrooij/rest-api-filter-fields
- * Description:         Enables you to filter the fields returned by the api.
- * Version:             1.0.5
- * Author:              Stephan van Rooij
- * Author URI:          https://svrooij.nl
- * License:             MIT
- * License URI:         https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE
- */
 
-add_action('rest_api_init','rest_api_filter_fields_init',20);
+class REST_Api_Filter_Fields {
+
+  public function __construct(){
+    add_action('rest_api_init',array($this,'init'),20);
+  }
+
+
 /**
  * Register the fields functionality for all posts.
  * Because of the 12 you can also use the filter functionality for custom posts
  */
-function rest_api_filter_fields_init(){
+public function init(){
 
   // Get all public post types, default includes 'post','page','attachment' and custom types added before 'init', 20
   $post_types = get_post_types(array('public' => true), 'objects');
@@ -39,16 +28,16 @@ function rest_api_filter_fields_init(){
       //die($post_type_name);
 
       // Add de filter. The api uses eg. 'rest_prepare_post' with 3 parameters.
-      add_filter('rest_prepare_'.$post_type_name,'rest_api_filter_fields_magic',20,3);
+      add_filter('rest_prepare_'.$post_type_name,array($this,'filter_magic'),20,3);
     }
 
   }
 
   // Also enable filtering 'categories', 'comments', 'taxonomies' and 'terms'
-  add_filter('rest_prepare_comment','rest_api_filter_fields_magic',20,3);
-  add_filter('rest_prepare_taxonomy','rest_api_filter_fields_magic',20,3);
-  add_filter('rest_prepare_term','rest_api_filter_fields_magic',20,3);
-  add_filter('rest_prepare_category','rest_api_filter_fields_magic',20,3);
+  add_filter('rest_prepare_comment',array($this,'filter_magic'),20,3);
+  add_filter('rest_prepare_taxonomy',array($this,'filter_magic'),20,3);
+  add_filter('rest_prepare_term',array($this,'filter_magic'),20,3);
+  add_filter('rest_prepare_category',array($this,'filter_magic'),20,3);
 }
 
 
@@ -59,7 +48,7 @@ function rest_api_filter_fields_init(){
  * @param WP_REST_Request    $request    Request object.
  * @return object (Either the original or the object with the fields filtered)
  */
-function rest_api_filter_fields_magic( $response, $post, $request ){
+public function filter_magic( $response, $post, $request ){
   // Get the parameter from the WP_REST_Request
   // This supports headers, GET/POST variables.
   // and returns 'null' when not exists
@@ -91,7 +80,7 @@ function rest_api_filter_fields_magic( $response, $post, $request ){
     if(empty($filters) || count($filters) == 0)
       return $response;
 
-    $singleFilters = array_filter($filters,'singleValueFilterArray');
+    $singleFilters = array_filter($filters,array($this,'singleValueFilterArray'));
 
     // Foreach property inside the data, check if the key is in the filter.
     foreach ($data as $key => $value) {
@@ -101,12 +90,12 @@ function rest_api_filter_fields_magic( $response, $post, $request ){
       }
     }
 
-    $childFilters = array_filter($filters,'childValueFilterArray');
+    $childFilters = array_filter($filters,array($this,'childValueFilterArray'));
 
     foreach ($childFilters as $childFilter) {
-      $val = array_path_value($data,$childFilter);
+      $val = $this->array_path_value($data,$childFilter);
       if($val != null){
-        set_array_path_value($filtered_data,$childFilter,$val);
+        $this->set_array_path_value($filtered_data,$childFilter,$val);
       }
     }
 
@@ -212,3 +201,5 @@ function set_array_path_value(array &$array, $path, $value)
     // set value of the target cell
     $pointer = $value;
 }
+}
+new REST_Api_Filter_Fields();
