@@ -92,6 +92,7 @@ public function filter_magic( $response, $post, $request ){
 
     $childFilters = array_filter($filters,array($this,'childValueFilterArray'));
 
+    // This part should be made better!!
     foreach ($childFilters as $childFilter) {
       $val = $this->array_path_value($data,$childFilter);
       if($val != null){
@@ -148,6 +149,8 @@ function array_path_value(array $array, $path, $default = null)
         if (isset($value[$part])) {
             // replace current value with the child
             $value = $value[$part];
+        } elseif('first' == $part && is_array($value)){
+            $value = $value[0];
         } else {
             // key doesn't exist, fail
             return $default;

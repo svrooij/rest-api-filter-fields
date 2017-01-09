@@ -98,7 +98,9 @@ so please create an issue (or a pull request with a fix there)
 ## Changelog ##
 
 ### 1.0.5 ###
-* Support for embedded fields (when you include the '_embed' GET parameter!)
+* Support for embedded fields (when you include the '_embed' GET parameter!).
+* The `_links` field doesn't get stripped anymore.
+* Taking the first element of an collection with `first`, like `_embedded.author.first.name`.
 * Moved all the logic to a separate class, so it won't intervene the Wordpress core.
 
 ### 1.0.4 ###
