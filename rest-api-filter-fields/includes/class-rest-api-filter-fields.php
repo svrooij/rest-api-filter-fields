@@ -33,6 +33,25 @@ public function init(){
 
   }
 
+  $tax_types = get_taxonomies(array('public' => true), 'objects');
+
+  foreach ($tax_types as $tax_type) {
+
+    //Test if this posttype should be shown in the rest api.
+    $show_in_rest = ( isset( $tax_type->show_in_rest ) && $tax_type->show_in_rest ) ? true : false;
+    if($show_in_rest) {
+
+      // We need the postname to enable the filter.
+      $tax_type_name = $tax_type->name;
+
+      //die($post_type_name);
+
+      // Add de filter. The api uses eg. 'rest_prepare_post' with 3 parameters.
+      add_filter('rest_prepare_'.$tax_type_name,array($this,'filter_magic'),20,3);
+    }
+
+  }
+
   // Also enable filtering 'categories', 'comments', 'taxonomies' and 'terms'
   add_filter('rest_prepare_comment',array($this,'filter_magic'),20,3);
   add_filter('rest_prepare_taxonomy',array($this,'filter_magic'),20,3);
