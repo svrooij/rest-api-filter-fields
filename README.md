@@ -3,8 +3,8 @@
 **Donate link:** https://svrooij.nl/buy-me-a-beer  
 **Tags:** json, rest, api, rest-api  
 **Requires at least:** 4.4  
-**Tested up to:** 4.7  
-**Stable tag:** 1.0.5  
+**Tested up to:** 4.7.3  
+**Stable tag:** 1.0.6  
 **License:** MIT  
 **License URI:** https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE  
 
@@ -97,8 +97,11 @@ so please create an issue (or a pull request with a fix there)
 
 ## Changelog ##
 
+### 1.0.6 ###
+* Filter fields enabled on custom taxonomies [Issue #6](https://github.com/svrooij/rest-api-filter-fields/issues/6), thanks to [Denis Yilmaz](https://github.com/denisyilmaz) for the fix!
+
 ### 1.0.5 ###
-* Support for embedded fields (when you include the '_embed' GET parameter!).
+* Support for embedded fields (when you include the `_embed` GET parameter!).
 * The `_links` field doesn't get stripped anymore.
 * Taking the first element of an collection with `first`, like `_embedded.author.first.name`.
 * Moved all the logic to a separate class, so it won't intervene the Wordpress core.
