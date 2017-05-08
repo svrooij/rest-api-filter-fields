@@ -52,11 +52,12 @@ public function init(){
 
   }
 
-  // Also enable filtering 'categories', 'comments', 'taxonomies' and 'terms'
+  // Also enable filtering 'categories', 'comments', 'taxonomies', 'terms' and 'users'
   add_filter('rest_prepare_comment',array($this,'filter_magic'),20,3);
   add_filter('rest_prepare_taxonomy',array($this,'filter_magic'),20,3);
   add_filter('rest_prepare_term',array($this,'filter_magic'),20,3);
   add_filter('rest_prepare_category',array($this,'filter_magic'),20,3);
+  add_filter('rest_prepare_user',array($this,'filter_magic'),20,3);
 }
 
 

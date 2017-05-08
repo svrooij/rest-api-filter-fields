@@ -3,8 +3,8 @@
 **Donate link:** https://svrooij.nl/buy-me-a-beer  
 **Tags:** json, rest, api, rest-api  
 **Requires at least:** 4.4  
-**Tested up to:** 4.7.3  
-**Stable tag:** 1.0.6  
+**Tested up to:** 4.7.4  
+**Stable tag:** 1.0.7  
 **License:** MIT  
 **License URI:** https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE  
 
@@ -89,13 +89,18 @@ You can filter on nested properties with a '.' like 'title.rendered'. Not sure i
 Yes, we picked 20 as priority (default = 10) for activating.
 This mean this plugin is probably activated last, so all custom post types should already be loaded.
 But this only works if you made it public for the api.
+See [Adding REST API Support for Custom Content Types](https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-rest-api-support-for-custom-content-types/) for more information.
 
 ### I found a bug, what should I do? ###
 
 All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields](https://github.com/svrooij/rest-api-filter-fields/issues)
-so please create an issue (or a pull request with a fix there)
+so please create an issue (or a pull request with a fix) there.
 
 ## Changelog ##
+
+### 1.0.7 ###
+* Filter fields enabled on users [Issue #9](https://github.com/svrooij/rest-api-filter-fields/issues/9)
+* Bumped wordpress version
 
 ### 1.0.6 ###
 * Filter fields enabled on custom taxonomies [Issue #6](https://github.com/svrooij/rest-api-filter-fields/issues/6), thanks to [Denis Yilmaz](https://github.com/denisyilmaz) for the fix!
