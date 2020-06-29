@@ -3,9 +3,13 @@
 class REST_Api_Filter_Fields {
 
   public function __construct(){
-    add_action('rest_api_init',array($this,'init'),20);
+    global $wp_version;
+    if(version_compare($wp_version, '5', '<')) {
+      add_action('rest_api_init',array($this,'init'),20);
+    } else {
+      add_action('admin_notices', array($this,'admin_notice'), 20);
+    }
   }
-
 
 /**
  * Register the fields functionality for all posts.
@@ -30,7 +34,6 @@ public function init(){
       // Add de filter. The api uses eg. 'rest_prepare_post' with 3 parameters.
       add_filter('rest_prepare_'.$post_type_name,array($this,'filter_magic'),20,3);
     }
-
   }
 
   $tax_types = get_taxonomies(array('public' => true), 'objects');
@@ -223,6 +226,13 @@ function set_array_path_value(array &$array, $path, $value)
 
     // set value of the target cell
     $pointer = $value;
-}
+  }
+  
+  public function admin_notice() {
+    echo '<div class="notice notice-warning">
+      <p>The plugin: <b>WP REST API - filter fields</b> is no longer needed in Wordpress 4.9 or higher. You should disable it! <a href="https://github.com/svrooij/rest-api-filter-fields/issues/22">More details</a></p>
+      <p>Enjoyed using this plugin, <a href="https://github.com/sponsors/svrooij">consider sponsoring me</a></p> 
+    </div>';  
+  }
 }
 new REST_Api_Filter_Fields();

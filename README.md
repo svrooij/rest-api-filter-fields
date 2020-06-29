@@ -1,16 +1,26 @@
-# REST API - Filter Fields #
+# REST API - Filter Fields
+
 **Contributors:** svrooij  
-**Donate link:** https://svrooij.nl/buy-me-a-beer  
+**Donate link:** https://github.com/sponsors/svrooij  
 **Tags:** json, rest, api, rest-api  
 **Requires at least:** 4.4  
-**Tested up to:** 4.7.4  
-**Stable tag:** 1.0.7  
+**Tested up to:** 5.4.2  
+**Stable tag:** 1.0.8  
 **License:** MIT  
 **License URI:** https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE  
 
 Filter the properties returned by the Wordpress rest api V2
 
-## Description ##
+## Deprecated
+
+Since wordpress version 4.9.? wordpress includes the functionality provided by this plugin in the core of wordpress.
+
+Checkout https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/#_fields for functionality included in the wordpress core,
+they made it even better by filtering the amount of data pulled from the database.
+
+This plugin will no longer be maintained since it has been superseded by the core functionality.
+
+## Description
 
 The [wp-rest-api-v2](https://wordpress.org/plugins/rest-api/) returns a lot of properties.
 It could be very useful (or mobile-data-friendly) to only return the properties needed by the application.
@@ -60,43 +70,47 @@ It can return (with ``fields=id,title.rendered,link`` as GET parameter)
       }
     }
 
-### Notes ###
+### Notes
 
 1. If you specify fields so it wouldn't return data the default response is send back to the client.
 2. (for developers) something wrong with this plugin? [Github](https://github.com/svrooij/rest-api-filter-fields/)
-3. If you like the plugin [buy me a beer](https://svrooij.nl/buy-me-a-beer/)
+3. If you liked the plugin [consider sponsoring me](https://github.com/sponsors/svrooij)
 
-## Installation ##
+## Installation
 
 Installing this plugin is really easy.
 
 Just search the plugin directory for `rest api filter fields` and press install.
 Or download it right from [Github](https://github.com/svrooij/rest-api-filter-fields/releases) and copy the `rest-api-filter-fields` directory in the archive to `wp-content/plugins/`.
 
-## Frequently Asked Questions ##
+## Frequently Asked Questions
 
-### Do you add data to the response? ###
+### Do you add data to the response
 
 No, this plugin only removes entries.
 When you want to add [featured_images](https://github.com/svrooij/rest-api-filter-fields/issues/5), I recommend using [better-rest-api-featured-images](https://wordpress.org/plugins/better-rest-api-featured-images/)
 
-### How about nested propterties? ###
+### How about nested propterties
 
 You can filter on nested properties with a '.' like 'title.rendered'. Not sure if this also works on arrays. [Existing issues](https://github.com/svrooij/rest-api-filter-fields/issues) or [Submit issue](https://github.com/svrooij/rest-api-filter-fields/issues/new)
 
-### Does this also work for my custom posttype? ###
+### Does this also work for my custom posttype
 
 Yes, we picked 20 as priority (default = 10) for activating.
 This mean this plugin is probably activated last, so all custom post types should already be loaded.
 But this only works if you made it public for the api.
 See [Adding REST API Support for Custom Content Types](https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-rest-api-support-for-custom-content-types/) for more information.
 
-### I found a bug, what should I do? ###
+### I found a bug, what should I do
 
 All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields](https://github.com/svrooij/rest-api-filter-fields/issues)
 so please create an issue (or a pull request with a fix) there.
 
-## Changelog ##
+## Changelog
+
+### 1.0.8 ###
+* Final version before being archived.
+* This update will **disable** the functionality in wordpress 5.0 or above and show a message in the admin dashboard.
 
 ### 1.0.7 ###
 * Filter fields enabled on users [Issue #9](https://github.com/svrooij/rest-api-filter-fields/issues/9)

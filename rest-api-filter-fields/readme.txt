@@ -1,16 +1,23 @@
 === REST API - Filter Fields ===
 Contributors: svrooij
-Donate link: https://svrooij.nl/buy-me-a-beer
+Donate link: https://github.com/sponsors/svrooij
 Tags: json, rest, api, rest-api
 Requires at least: 4.4
-Tested up to: 4.7.4
-Stable tag: 1.0.7
+Tested up to: 5.4.2
+Stable tag: 1.0.8
 License: MIT
 License URI: https://raw.githubusercontent.com/svrooij/rest-api-filter-fields/master/LICENSE
 
-Filter the properties returned by the Wordpress rest api V2
+Filter the properties returned by the Wordpress rest api V2 (only needed until wordpress 4.9)
 
 == Description ==
+
+Since wordpress version 4.9.? wordpress includes the functionality provided by this plugin in the core of wordpress.
+
+Checkout https://developer.wordpress.org/rest-api/using-the-rest-api/global-parameters/#_fields for functionality included in the wordpress core,
+they made it even better by filtering the amount of data pulled from the database.
+
+This plugin will no longer be maintained since it has been superseded by the core functionality.
 
 The [wp-rest-api-v2](https://wordpress.org/plugins/rest-api/) returns a lot of properties.
 It could be very useful (or mobile-data-friendly) to only return the properties needed by the application.
@@ -64,7 +71,7 @@ It can return (with ``fields=id,title.rendered,link`` as GET parameter)
 
 1. If you specify fields so it wouldn't return data the default response is send back to the client.
 2. (for developers) something wrong with this plugin? [Github](https://github.com/svrooij/rest-api-filter-fields/)
-3. If you like the plugin [buy me a beer](https://svrooij.nl/buy-me-a-beer/)
+3. If you liked the plugin [consider sponsoring me](https://github.com/sponsors/svrooij)
 
 == Installation ==
 
@@ -97,6 +104,10 @@ All the bugs/issues are maintained on [github.com/svrooij/rest-api-filter-fields
 so please create an issue (or a pull request with a fix) there.
 
 == Changelog ==
+
+= 1.0.8 =
+* Final version before being archived.
+* This update will **disable** the functionality in wordpress 5.0 and above and show a message in the admin dashboard.
 
 = 1.0.7 =
 * Filter fields enabled on users [Issue #9](https://github.com/svrooij/rest-api-filter-fields/issues/9)
